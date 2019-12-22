@@ -75,7 +75,7 @@ const watch = {
         $('#rating').val(),
         $('#comment').val(),
         nDate,
-        document.getElementById('usernameFilled').innerHTML
+        document.getElementById('usernameEmpty').value
       ).done(function(result) {
         // reload entries
         loadwatch();
