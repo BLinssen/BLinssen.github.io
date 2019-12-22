@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soryong</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../soryong.css">
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+    <section class="section">
+        <div class="container">
+            <div>
+                <h1 class="title is-1">
+                    WatchBuddy
+                </h1>
+            </div>
+            <br>
+            <div class="column" id="showWatch">
+                <div id="watch"></div>
+            </div>
+            <div class="column" id="showWatch">
+                <form id="addWatch">
+                    <table>
+                        <tr>
+                            <th class="table-th">
+                                <table id="watchTable" class="watch-table">
+                                    <tr class="header">
+                                        <th class="table-header-name">
+                                            <label class="table-header-text">Name</label>
+                                        </th>
+                                        <th class="table-header-type">
+                                            <label class="table-header-text">Type</label class="table-text">
+                                        </th>
+                                        <th class="table-header-seasons">
+                                            <label class="table-header-text">Seasons</label class="table-text">
+                                        </th>
+                                        <th class="table-header-platform">
+                                            <label class="table-header-text">Platform</label class="table-text">
+                                        </th>
+                                        <th class="table-header-rating">
+                                            <label class="table-header-text">Rating</label class="table-text">
+                                        </th>
+                                        <th>
+                                            <label class="table-header-text">Comment</label class="table-text">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="input" type="text" placeholder="Name" id="name">
+                                        </td>
+                                        <td>
+                                            <select name="type" id="type" class="select-css">
+                                                <option value="Movie">Movie</option>
+                                                <option value="Series">Series</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input class="input" type="text" placeholder="Seasons" id="seasons">
+                                        </td>
+                                        <td>
+                                            <select name="platform" id="platform" class="select-css">
+                                                <option value="Netflix">Netflix</option>
+                                                <option value="HBO">HBO</option>
+                                                <option value="Amazon">Amazon</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="rating" class="rating-invis" type="text"></input>
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star5" name="rating" value="5" /><label
+                                                    class="full" for="star5" title="Awesome - 5 stars"
+                                                    onclick="setRating(5)"></label>
+                                                <input type="radio" id="star4" name="rating" value="4" /><label
+                                                    class="full" for="star4" title="Pretty good - 4 stars"
+                                                    onclick="setRating(4)"></label>
+                                                <input type="radio" id="star3" name="rating" value="3" /><label
+                                                    class="full" for="star3" title="Meh - 3 stars"
+                                                    onclick="setRating(3)"></label>
+                                                <input type="radio" id="star2" name="rating" value="2" /><label
+                                                    class="full" for="star2" title="Kinda bad - 2 stars"
+                                                    onclick="setRating(2)"></label>
+                                                <input type="radio" id="star1" name="rating" value="1" /><label
+                                                    class="full" for="star1" title="Sucks big time - 1 star"
+                                                    onclick="setRating(1)"></label>
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <input class="input" type="textarea" placeholder="Comment" id="comment">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </th>
+                            <th>
+                                <div>
+                                    <button type="submit" class="button">OK</button>
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+    </section>
+    <!--Footer bar-->
+    <div id="footer-placeholder">
+
+    </div>
+</body>
+<script type="text/javascript" src="/docs/soryong.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../nav.html");
+    })
+    $(function () {
+        $("#footer-placeholder").load("../footer.html");
+    });
+</script>
+<script id="watch-template" type="text/x-handlebars-template">
+    <table id="watchTable" class="watch-table">
+        <tr class="header">
+            <th>
+                <label class="table-header-text">Name</label>
+            </th>
+            <th>
+                <label class="table-header-text">Type</label class="table-text">
+            </th>
+            <th>
+                <label class="table-header-text">Seasons</label class="table-text">
+            </th>
+            <th>
+                <label class="table-header-text">Platform</label class="table-text">
+            </th>
+            <th>
+                <label class="table-header-text">Rating</label class="table-text">
+            </th>
+            <th>
+                <label class="table-header-text">Comment</label class="table-text">
+            </th>
+            <th>
+                <label class="table-header-text">Date</label class="table-text">
+            </th>
+            <th class="invis-table-col">
+                <label class="table-header-text">User</label class="table-text">
+            </th>
+            <th class="invis-table-col">
+                <label class="table-header-text">Id</label class="table-text">
+            </th>
+            <th class="icon-col">
+
+            </th>
+        </tr>        
+        {{#each items}}
+        <tr>
+            <td>
+                <label class="table-text">{{name}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{type}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{seasons}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{platform}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{rating}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{comment}}</label class="table-text">
+            </td>
+            <td>
+                <label class="table-text">{{date}}</label class="table-text">
+            </td>
+            <td class="invis-table-col">
+                <label class="table-text">{{user}}</label class="table-text">
+            </td>
+            <td class="invis-table-col">
+                <label class="table-text">{{id}}</label class="table-text">
+            </td>
+            <td>
+                <button class="trash">
+                    <a class="fas fa-trash"></a>
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+        </table>
+    </script>
