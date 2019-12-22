@@ -91,10 +91,15 @@ const watch = {
   })();
 
   function setCookie(cname, cvalue, exdays) {
+    delCookie(cname);
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function delCookie(cname) {
+    document.cookie = cname+"=;"+"-1";
   }
   
   function getCookie(cname) {
@@ -135,13 +140,14 @@ const watch = {
       document.getElementById('usernameFilled').style.display = 'block';
       document.getElementById('usernameEmpty').style.display = 'none';
       setCookie('username', document.getElementById('usernameFilled').innerHTML, 365)
+      filterTable();
     }
   }
 
   function filterTable(filterType, column) {
     // Declare variables
     var filter, table, tr, td, i, txtValue;
-    filter = getCookie("username");
+    filter = document.getElementById("usernameEmpty").value;
     table = document.getElementById("watchTable");
     tr = table.getElementsByTagName("tr");
     // Loop through all table rows, and hide those who don't match the search query
