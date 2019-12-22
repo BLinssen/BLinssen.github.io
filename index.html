@@ -161,12 +161,15 @@
             <th class="invis-table-col">
                 <label class="table-header-text">Id</label class="table-text">
             </th>
+            <th class="invis-table-col">
+                <label class="table-header-text">Rev</label class="table-text">
+            </th>
             <th class="icon-col">
 
             </th>
         </tr>        
         {{#each items}}
-        <tr>
+        <tr id={{id}}>
             <td>
                 <label class="table-text">{{name}}</label class="table-text">
             </td>
@@ -194,8 +197,11 @@
             <td class="invis-table-col">
                 <label class="table-text">{{id}}</label class="table-text">
             </td>
+            <td class="invis-table-col">
+                <label class="table-text">{{rev}}</label class="table-text">
+            </td>
             <td>
-                <button class="trash">
+                <button class="trash" slot={{id}} title={{rev}} onclick="deleteRow(this)">
                     <a class="fas fa-trash"></a>
                 </button>
             </td>
